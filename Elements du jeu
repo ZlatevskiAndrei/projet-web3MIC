@@ -1,3 +1,19 @@
 1. Une grille de dim 10 sur 10
+    Front
+    - Numeroter les lignes et les colonnes
+    
+    Back
     - Eventlisteners (ex. onclick une croix s'affiche si...)
 2. Bot
+3. Initialisation du jeu
+4. Bateaux
+    -Nombres de bateaux
+        - 1 de 5
+        - 1 de 4
+        - 2 de 3
+        - 1 de 2
+    -Contraintes
+        - Bateaux que sur les lignes (soit verticalement, soit horizontalement)
+        - Respecter la taille de la matrice
+        - Pas de chevauchement des bateaux
+
