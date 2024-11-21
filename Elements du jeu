@@ -1,3 +1,7 @@
 1. Une grille de dim 10 sur 10
+    Front
+    - Numeroter les lignes et les colonnes
+    
+    Back
     - Eventlisteners (ex. onclick une croix s'affiche si...)
 2. Bot
