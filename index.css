@@ -1,0 +1,16 @@
+table {
+    width: 400px; 
+    height: 400px; 
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid black; 
+}
+
+#playerGridPlacement {
+    display: flex; 
+    margin-top: 20vh; 
+    margin-bottom: 20vh; 
+    margin-left: 10vh;
+}
