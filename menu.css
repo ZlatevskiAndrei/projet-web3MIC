@@ -53,3 +53,9 @@
     display: block;
     margin : auto;
 }
+
+button a{
+    display:block;
+    text-decoration:none;
+    color:white;
+}
