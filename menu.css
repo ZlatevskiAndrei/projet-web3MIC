@@ -1,0 +1,22 @@
+.title, p {
+    text-align: center;
+   
+}
+
+.play, button {
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    height: 40px;
+    width:50%;
+    text-align: center;
+    
+}
+.menuButton, button {
+    background-color: #0404aa;
+    border: none;
+    color: white;
+    height: 40px;
+    width:50%;
+    text-align: center;
+}
