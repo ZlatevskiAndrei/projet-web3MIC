@@ -53,8 +53,9 @@
     display: block;
     margin : auto;
 }
+.menuButton:hover {background-color: #0a137a}
 
-button a{
+button a{         /*gère les liens*/
     display:block;
     text-decoration:none;
     color:white;
