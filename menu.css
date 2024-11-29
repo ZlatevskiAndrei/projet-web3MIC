@@ -3,20 +3,53 @@
    
 }
 
-.play, button {
-    background-color: #04AA6D; /* Green */
+.play {                 /*interface bouton play */
+    background-color: #04AA6D; 
     border: none;
     color: white;
-    height: 40px;
+    height: 50px;
     width:50%;
+    font-size: 20px;
     text-align: center;
-    
+    display: block;
+    margin : auto;
+    transition: all 0.5s;
+    cursor: pointer;
 }
-.menuButton, button {
+
+.play span {            /*les fonctions suivantes servent à afficher la petite flèche quand on passe la souris sur play */
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.play span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.play:hover span {
+    padding-right: 25px;
+}
+  
+.play:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.menuButton {       /*Interface des autres boutons*/
     background-color: #0404aa;
     border: none;
     color: white;
-    height: 40px;
+    height: 45px;
     width:50%;
+    font-size: 16px;
     text-align: center;
+    display: block;
+    margin : auto;
 }
