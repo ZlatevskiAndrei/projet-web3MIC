@@ -16,7 +16,7 @@
         - Bateaux que sur les lignes (soit verticalement, soit horizontalement)
         - Respecter la taille de la matrice
         - Pas de chevauchement des bateaux
-    -Etapes pour placer les bateaux dans la grille
+    -Etapes pour placer les bateaux dans la grille (coté bot)
         1. On itere on commencant par le plus grand bateaux
         2. Calcul sur dans quelles directions (d) à construire les bateaux (right, up, left, down)
         3. Si on au moins 2 d, on met toutes les directions autorisées dans une liste, et fait un choix random sur laquelle a prendre 
