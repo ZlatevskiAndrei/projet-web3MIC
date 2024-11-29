@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     playerGrid.addEventListener("click", (event) => {
         if (event.target.tagName === 'TD') {
-            if (event.target.style.backgroundImage === `url("${crossImgUrl}")`) event.target.style.backgroundImage = ''; 
+            if (event.target.style.backgroundImage === `url("${crossImgUrl}")`) event.target.style.backgroundImage = ''; //enleve croix
             else {
-                event.target.style.backgroundImage = `url("${crossImgUrl}")`;
+                event.target.style.backgroundImage = `url("${crossImgUrl}")`; //ajoute croix
                 event.target.style.backgroundSize = 'cover'; 
                 event.target.style.backgroundPosition = 'center'; 
             }
@@ -40,7 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function boat_placements() { // à tester
-    let size = 5;
+    
+    let indice = 0;
+    let size_list = [5,4,3,3,2];
+    let size = size_list[indice]
     for (let i = 0; i < 5; i++) {
         let boat = [];
         while (true) {
@@ -60,11 +63,13 @@ function boat_placements() { // à tester
                     y += randomDirection.y;
                 }
                 human_boats.push(boat);
-                size--;
+                indice++;
+                size = size_list[indice];
                 break;
             }
         }
     }
+    console.log(human_boats);
 }
 
 function isBoatConflict(generatedBoats, startingCell, direction, size) {
@@ -91,5 +96,20 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function placeAIBoat(boatCoordinates){ //en train de completer
+    let indice = 0;
+    let size_list = [5,4,3,3,2];
+    let size = size_list[indice]
+    for (let i=0; i<5; i++){
+        boatCoordinates[i].forEach()
+            
+        });
+    }
+}
 
+function appearPlacement(){ //faire apparaitre un image sur dans chaque case indiquee
+
+}
+
+boat_placements()
 
