@@ -13,7 +13,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover { /*quadn on passe sur le lien il se colore*/
+li a:hover { /*quand on passe sur le lien il se colore*/
     background-color: #555;
     color: white;
 }
