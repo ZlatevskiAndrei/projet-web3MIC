@@ -16,6 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         playerGrid.appendChild(row);
     }
+    for (let i = 0; i < 10; i++) {
+        let row = document.createElement('tr');
+        for (let j = 0; j < 10; j++) {
+            let col = document.createElement('td');
+            col.setAttribute('id', i.toString() + j.toString());
+            row.appendChild(col);
+        }
+        botGrid.appendChild(row);
+    }
     playerGrid.addEventListener("click", (event) => {
         if (event.target.tagName === 'TD') {
             if (event.target.style.backgroundImage === `url("${crossImgUrl}")`) event.target.style.backgroundImage = ''; 
