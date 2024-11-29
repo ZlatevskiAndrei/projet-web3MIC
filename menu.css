@@ -1,6 +1,15 @@
-.title, p {
+.title {
     text-align: center;
-   
+    font-size: 40px;
+}
+.version{       /*c'est encore moche sorry*/
+    text-align: center;
+    font-size: 20px;
+    color:#13468e;
+}
+
+body{
+    background-image:url("./winter_landscape.png");
 }
 
 .play {                 /*interface bouton play */
@@ -43,7 +52,7 @@
 }
 
 .menuButton {       /*Interface des autres boutons*/
-    background-color: #0404aa;
+    background-color: #457ecd;
     border: none;
     color: white;
     height: 45px;
@@ -53,7 +62,7 @@
     display: block;
     margin : auto;
 }
-.menuButton:hover {background-color: #0a137a}
+.menuButton:hover {background-color: #2f74ac}
 
 button a{         /*gère les liens*/
     display:block;
