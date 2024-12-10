@@ -1,9 +1,33 @@
+body {
+    background-image: url("../resources/winter_landscape.png");
+    display: grid;
+    grid-template-columns: 250px;
+    grid-template-rows: 20% 30% 50%;
+    justify-items: center;
+}
+
+img {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    width: 400px;
+    height: auto;
+}
+
+.navbar {
+    position: ;
+}
+
+.rules {
+    grid-column-start: 2;
+    grid-row-start: 3;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: rgb(255, 255, 255);
 }
 
 li a { 
@@ -19,6 +43,6 @@ li a:hover { /*quand on passe sur le lien il se colore*/
 }
 
 .active { /*le lien actif (la page sur laquelle on est) est coloré*/
-    background-color: #04AA6D;
+    background-color: rgb(228, 72, 72);
     color: white;
 }
