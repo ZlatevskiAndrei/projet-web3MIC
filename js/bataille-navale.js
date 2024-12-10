@@ -1,6 +1,6 @@
 "use strict"
 import { getRandomInt, authorizedDirections, isBoatConflict } from "./util.js";
-
+import { clickGridEvents } from "./dom.js";
 
 export let human_boats = [];
 export let AI_boats = [];
@@ -39,7 +39,8 @@ export function boat_placements(boats) {
 export async function start_game(grid1, grid2) {
     let playerTurn = true;
     while (true) {
-
+        let test = await clickGridEvents(grid2);
+        console.log(test[0]+" "+test[1]);
     }
 }
 
