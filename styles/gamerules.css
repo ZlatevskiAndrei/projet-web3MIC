@@ -2,8 +2,7 @@ body {
     background-image: url("../resources/winter_landscape.png");
     display: grid;
     grid-template-columns: 250px;
-    grid-template-rows: 20% 30% 50%;
-    justify-items: center;
+    grid-template-rows: 20% 300px 50%;
 }
 
 img {
@@ -11,13 +10,13 @@ img {
     grid-row-start: 2;
     width: 400px;
     height: auto;
+    justify-self: center;
 }
 
-.navbar {
-    position: ;
-}
 
 .rules {
+    font-family: Harrington,fantasy;
+    font-size: xx-large;
     grid-column-start: 2;
     grid-row-start: 3;
 }
@@ -34,8 +33,11 @@ li a {
     display: block;
     color: #000;
     padding: 8px 16px;
+    height: 30px;
     text-decoration: none;
+    font-family:Lucida Calligraphy,cursive;
 }
+
 
 li a:hover { /*quand on passe sur le lien il se colore*/
     background-color: #555;
@@ -45,4 +47,9 @@ li a:hover { /*quand on passe sur le lien il se colore*/
 .active { /*le lien actif (la page sur laquelle on est) est coloré*/
     background-color: rgb(228, 72, 72);
     color: white;
+}
+
+.hohoho {
+    font-family: Harrington,fantasy;
+    font-size: xx-large;
 }
