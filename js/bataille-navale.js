@@ -5,7 +5,7 @@ import { clickGridEvents } from "./dom.js";
 export let human_boats = [];
 export let AI_boats = [];
 
-export function boat_placements(boats) {
+export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu teste sur surrounding, si on ne peux pas mettre une celule, on abandone la création de ce bateau.
     let index = 0;
     let size_list = [5, 4, 3, 3, 2];
     let size = size_list[index]
@@ -22,7 +22,7 @@ export function boat_placements(boats) {
             if (!isBoatConflict(boats, randomCell, randomDirection, size)) {
                 let x = randomCell.x;
                 let y = randomCell.y;
-                for (let j = 0; j < size; j++) {
+                for (let j = 0; j < size; j++) { //ici pour chaque addition d'un cellule, on teste avec surrounding et si on ne peux pas on met un break immediatement
                     boat.push({ x, y });
                     x += randomDirection.x;
                     y += randomDirection.y;
@@ -40,7 +40,7 @@ export async function start_game(grid1, grid2) {
     let playerTurn = true;
     while (true) {
         let test = await clickGridEvents(grid2);
-        console.log(test[0]+" "+test[1]);
+        console.log(test[0] + " " + test[1]);
     }
 }
 
