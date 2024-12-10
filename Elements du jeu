@@ -22,3 +22,25 @@
         3. Si on au moins 2 d, on met toutes les directions autorisées dans une liste, et fait un choix random sur laquelle a prendre 
 
         -- Diviser la grille en zones? Fait changer les zones?
+
+Séance mardi 10.12.24
+Backend
+- On essaie d'interdir les bateaux à se toucher en generant ses placements
+
+Il nous reste à:
+- Cacher les bateaux du bot pour que l'utilisateur ne peut pas les voir sur l'écran
+    - Il suffit d'enlever la coloration des grilles et enregistrer les coordonnées des bateaux
+
+- Créer une fonction qui montre/décide c'est à qui de jouer (c'est peut-être plutôt de front)
+    - On ne peut que jouer une fois par tour...
+
+- Créer une fonction qui place les choix du bot (sémi-aléatoirement)
+    - if (x,y) est dans bateaux_player
+         mémorise (x,y) et choisis (x+1,y) ou (x-1,y) ou (x, y+1) ou (x, y-1) comme le choix prochain
+    - if (x,y) n'est pas dans bateaux_player
+        choix prochain: random((x,y))
+
+    Déterminons le niveau de l'intelligence du bot
+    - Il connaît le nombre de bateaux et leurs tailles ? -> Il sait combien de bateaux (et leurs tailles) qui le reste ?
+    - Si deux cases dans par ex. la direction y 
+    
