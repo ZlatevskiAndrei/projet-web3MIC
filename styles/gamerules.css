@@ -13,6 +13,11 @@ img {
     justify-self: center;
 }
 
+.story {
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
 
 .rules {
     font-family: Harrington,fantasy;
