@@ -1,5 +1,5 @@
 "use strict"
-import { getRandomInt, authorizedDirections, isBoatConflict } from "./util.js";
+import { getRandomInt, authorizedDirections, isOccupied, isSurrounded } from "./util.js";
 import { clickGridEvents } from "./dom.js";
 
 export let human_boats = [];
@@ -12,14 +12,14 @@ export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu 
     for (let i = 0; i < 5; i++) {
         let boat = [];
         while (true) {
-            let randomCell = {
+            let randomCell = { //le bot choisit une case dans la grille
                 x: getRandomInt(10),
                 y: getRandomInt(10)
             };
             let directions = authorizedDirections(randomCell, size);
-            if (directions.length === 0) continue;
+            if (directions.length === 0) continue; // on refait le boucle = choisit une autre case de départ pour avoir des authorizedD
             let randomDirection = directions[getRandomInt(directions.length)];
-            if (!isBoatConflict(boats, randomCell, randomDirection, size)) {
+            if (!(isOccupied && isSurrounded)) { //si condition pas satisfait, on genere une nouvelle startingcell car while tjrs true puisque break se trouve dans le if
                 let x = randomCell.x;
                 let y = randomCell.y;
                 for (let j = 0; j < size; j++) { //ici pour chaque addition d'un cellule, on teste avec surrounding et si on ne peux pas on met un break immediatement
@@ -30,7 +30,7 @@ export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu 
                 boats.push(boat);
                 index++;
                 size = size_list[index];
-                break;
+                break; //sort du loop while
             }
         }
     }

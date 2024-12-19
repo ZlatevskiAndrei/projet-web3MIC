@@ -36,3 +36,13 @@ export function extractCoordinates(cellId) {
     } else throw new Error;
 
 }
+
+export function isOccupied(generatedBoats,x,y){
+    return generatedBoats.some(boat => boat.some(cell => cell.x === x && cell.y === y));
+}
+ 
+export function isSurrounded(x, y){
+    return isOccupied(x + 1, y) || isOccupied(x, y + 1) || isOccupied(x - 1, y) || isOccupied(x, y - 1)
+}
+    
+
