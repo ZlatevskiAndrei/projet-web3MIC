@@ -67,4 +67,5 @@ li a:hover { /*quand on passe sur le lien il se colore*/
 .hohoho {
     font-family: Harrington,fantasy;
     font-size: xx-large;
+    grid-row: 2;
 }
