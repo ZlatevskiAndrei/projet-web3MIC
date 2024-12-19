@@ -34,5 +34,13 @@ export function extractCoordinates(cellId) {
         const y = parseInt(match[2], 10);
         return [x, y];
     } else throw new Error;
+}
 
+export function isBoatChosen(boat_list, coordinates){
+    for(let boat in boat_list){
+        for(let boat_coordinates in boat){
+            if (boat_coordinates.x === coordinates.x && boat_coordinates.y === coordinates.y) return true;
+        }
+    }
+    return false;
 }
