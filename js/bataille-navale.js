@@ -41,6 +41,16 @@ export async function start_game(grid1, grid2) {
     while (true) {
         let test = await clickGridEvents(grid2);
         console.log(test[0] + " " + test[1]);
+        
+
+
+        /*
+        il attends jusqu'a ce que le joueur choche une case(si bonne case on laisse le X, sinon met un petit point),
+        faire une simulation comme si il calcule 2 sec et joue sur
+        la grille du joueur(si bonne case choisi, on fait pareil, sinon pareil. Juste que la on va faire le bot un peu plus
+        intelligent) et puis on fait un continue sur la boucle et on change de turn.
+        Le jeu finira le premier qui detruit tous les bateux.
+        */
     }
 }
 
