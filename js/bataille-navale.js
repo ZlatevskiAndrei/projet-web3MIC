@@ -1,6 +1,6 @@
 "use strict"
-import { getRandomInt, authorizedDirections, isOccupied, isSurrounded } from "./util.js";
-import { clickGridEvents } from "./dom.js";
+import { getRandomInt, authorizedDirections, isOccupied, isSurrounded, isBoatChosen } from "./util.js";
+import { clickGridEvents, toggleCrossMark } from "./dom.js";
 
 export let human_boats = [];
 export let AI_boats = [];
@@ -36,12 +36,12 @@ export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu 
     }
 }
 
-export async function start_game(grid1, grid2) {
-    let playerTurn = true;
+export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
     while (true) {
-        let test = await clickGridEvents(grid2);
-        console.log(test[0] + " " + test[1]);
-        
+        const {playerClickCoordinates, elementClicked} = await clickGridEvents(botGrid);
+        playerClickCoordinates = {x: playerClickCoordinates[0], y: playerClickCoordinates[1]};
+        if (isBoatChosen(human_boats, playerClickCoordinates)) toggleCrossMark(elementClicked);
+
 
 
         /*

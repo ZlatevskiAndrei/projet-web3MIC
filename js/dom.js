@@ -24,16 +24,11 @@ export function createGrid(gridId) {
 
 export async function clickGridEvents(gridId) {
     const grid = document.getElementById(gridId);
-    const crossImgUrl = './resources/istockphoto-1276735653-612x612.jpg';
-
     return new Promise((resolve) => {
         grid.addEventListener("click", function handleClick(event) {
             if (event.target.tagName === 'TD') {
-                toggleCellMark(event.target, crossImgUrl);
                 const coordinates = extractCoordinates(event.target.id);
-                setTimeout(() => {
-                    resolve(coordinates);
-                }, 2000);
+                resolve({coordinates,target : event.target});
                 grid.removeEventListener("click", handleClick);
             }
         });
@@ -42,7 +37,19 @@ export async function clickGridEvents(gridId) {
 
 
 
-export function toggleCellMark(cell, imageUrl) {
+export function toggleCrossMark(cell) {
+    imageUrl = '../resources/istockphoto-1276735653-612x612.jpg';
+    if (cell.style.backgroundImage === `url("${imageUrl}")`) {
+        cell.style.backgroundImage = '';
+    } else {
+        cell.style.backgroundImage = `url("${imageUrl}")`;
+        cell.style.backgroundSize = 'cover';
+        cell.style.backgroundPosition = 'center';
+    }
+}
+
+export function toggleDotMark(cell) {
+    imageUrl = '../resources/pngimg.com - dot_PNG1.png';
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
