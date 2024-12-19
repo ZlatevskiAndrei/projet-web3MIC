@@ -4,8 +4,11 @@ import { clickGridEvents, toggleCrossMark, toggleDotMark } from "./dom.js";
 
 export let human_boats = [];
 export let AI_boats = [];
+const chosenCells = new Set();
+const xImg = './resources/iconmonstr-x-mark-thin.png';
+const dotImg = './resources/pngimg.com - dot_PNG1.png';
 
-/*export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu teste sur surrounding, si on ne peux pas mettre une celule, on abandone la création de ce bateau.
+export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu teste sur surrounding, si on ne peux pas mettre une celule, on abandone la création de ce bateau.
     let index = 0;
     let size_list = [5, 4, 3, 3, 2];
     let size = size_list[index]
@@ -34,9 +37,55 @@ export let AI_boats = [];
             }
         }
     }
-}*/
+}
 
-export function boat_placements(boats) {
+export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
+    let botChosenCell = {
+        x: getRandomInt(10),
+        y: getRandomInt(10)
+    };
+    while (true) {
+        if (human_boats.length === 0 || AI_boats.length === 0) break;
+        let { coordinates: playerClickCoordinates, target: elementClicked } = await clickGridEvents(botGrid);
+        let formattedCoordinates = { x: playerClickCoordinates[0], y: playerClickCoordinates[1] };
+        if (isBoatChosen(AI_boats, formattedCoordinates)) {
+            AI_boats = AI_boats.map(boat => boat.filter(cell => !(cell.x === formattedCoordinates.x && cell.y === formattedCoordinates.y))).filter(boat => boat.length > 0);
+            toggleCrossMark(elementClicked, xImg);
+        }
+        else toggleDotMark(elementClicked, dotImg);
+        await botDelay();
+        let isCorrectChoice = isBotChosenBoat(human_boats, botChosenCell);
+        botChosenCell = processBotMove(playerGrid, human_boats, isCorrectChoice, botChosenCell);
+    }
+}
+
+function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell) {
+    let cellDOMInstance = document.getElementById(`${playerGrid}-${botChosenCell.x}${botChosenCell.y}`);
+    chosenCells.add(`${botChosenCell.x},${botChosenCell.y}`);
+    if (!isBotChosenBoat) {
+        toggleDotMark(cellDOMInstance, dotImg);
+        let newCell;
+        do {
+            newCell = { x: getRandomInt(10), y: getRandomInt(10) };
+        } while (chosenCells.has(`${newCell.x},${newCell.y}`));
+        return newCell;
+    }
+    human_boats = human_boats
+        .map(boat => boat.filter(cell => !(cell.x === botChosenCell.x && cell.y === botChosenCell.y)))
+        .filter(boat => boat.length > 0);
+    toggleCrossMark(cellDOMInstance, xImg);
+    let newAdjacentCell;
+    do {
+        newAdjacentCell = getRandomAdjacentCell(botChosenCell);
+    } while (chosenCells.has(`${newAdjacentCell.x},${newAdjacentCell.y}`));
+    return newAdjacentCell;
+}
+////////////////////////////////////////////////////////////
+/*ON LAISSE L'ANCIENNE VERSION DE LA FONCTION boat_placements ICI (pour tester le jeu) POUR LE MOMENT TANT QUE LA NOUVELLE N'EST PAS FINI*/
+////////////////////////////////////////////////////////////
+
+
+/*export function boat_placements(boats) {
     let index = 0;
     let size_list = [5, 4, 3, 3, 2];
     let size = size_list[index]
@@ -66,66 +115,4 @@ export function boat_placements(boats) {
         }
     }
 }
-
-export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
-    let botChosenCell = {
-        x: getRandomInt(10),
-        y: getRandomInt(10)
-    };
-    while (true) {
-        if (human_boats.length === 0 || AI_boats.length === 0) break;
-        let { coordinates: playerClickCoordinates, target: elementClicked } = await clickGridEvents(botGrid);
-        let formattedCoordinates = { x: playerClickCoordinates[0], y: playerClickCoordinates[1] };
-        console.log(formattedCoordinates);
-        console.log(AI_boats);  
-        console.log(isBoatChosen(AI_boats, formattedCoordinates));
-        if (isBoatChosen(AI_boats, formattedCoordinates)) {
-            AI_boats = AI_boats.map(boat => boat.filter(cell => !(cell.x === formattedCoordinates.x && cell.y === formattedCoordinates.y))).filter(boat => boat.length > 0);
-            toggleCrossMark(elementClicked);
-        }
-        else toggleDotMark(elementClicked);
-        await botDelay();
-        let isBotChosenBoat = isBotChosenBoat(human_boats, botChosenCell);
-        botChosenCell = processBotMove(playerGrid, human_boats, isBotChosenBoat, botRandomCell);
-    }
-}
-
-function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell) {
-    let cellDOMInstance = document.getElementById(`${playerGrid}-${botChosenCell.x}${botChosenCell.y}`);
-    if (!isBotChosenBoat) {
-        toggleDotMark(cellDOMInstance);
-        return {
-            x: getRandomInt(10),
-            y: getRandomInt(10)
-        };
-    }
-    human_boats = human_boats.map(boat => boat.filter(cell => !(cell.x === botChosenCell.x && cell.y === botChosenCell.y))).filter(boat => boat.length > 0);
-    toggleCrossMark(cellDOMInstance);
-    return getRandomAdjacentCell(botChosenCell);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-       il attends jusqu'a ce que le joueur choche une case(si bonne case on laisse le X, sinon met un petit point),
-       faire une simulation comme si il calcule 2 sec et joue sur
-       la grille du joueur(si bonne case choisi, on fait pareil, sinon pareil. Juste que la on va faire le bot un peu plus
-       intelligent) et puis on fait un continue sur la boucle et on change de turn.
-       Le jeu finira le premier qui detruit tous les bateux.
-       */
+    */

@@ -36,21 +36,18 @@ export async function clickGridEvents(gridId) {
 }
 
 
-export function toggleCrossMark(cell) {
-    imageUrl = '';
+export function toggleCrossMark(cell, imageUrl) {
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
         cell.style.backgroundImage = `url("${imageUrl}")`;
         cell.style.backgroundSize = 'cover';
         cell.style.backgroundPosition = 'center';
-        cell.style.backgroundColor = 'gray';
-        cell.style.border = '1px dashed black';
+        cell.style.border = '1px solid red';
     }
 }
 
-export function toggleDotMark(cell) {
-    imageUrl = '';
+export function toggleDotMark(cell, imageUrl) {
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
