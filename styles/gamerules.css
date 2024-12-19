@@ -18,6 +18,17 @@ img {
     grid-row-start: 1;
 }
 
+.names{
+    grid-column-start: 2;
+    grid-row-start: 3;
+    text-align: right;
+}
+
+.names p{
+    font-family: Harrington,fantasy;
+    font-size:medium;
+}
+
 .rules {
     font-family: Harrington,fantasy;
     font-size: xx-large;
