@@ -28,7 +28,7 @@ export async function clickGridEvents(gridId) {
         grid.addEventListener("click", function handleClick(event) {
             if (event.target.tagName === 'TD') {
                 const coordinates = extractCoordinates(event.target.id);
-                resolve({coordinates,target : event.target});
+                resolve({ coordinates, target: event.target });
                 grid.removeEventListener("click", handleClick);
             }
         });
@@ -36,26 +36,28 @@ export async function clickGridEvents(gridId) {
 }
 
 
-
 export function toggleCrossMark(cell) {
-    imageUrl = '../resources/istockphoto-1276735653-612x612.jpg';
+    imageUrl = '';
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
         cell.style.backgroundImage = `url("${imageUrl}")`;
         cell.style.backgroundSize = 'cover';
         cell.style.backgroundPosition = 'center';
+        cell.style.backgroundColor = 'gray';
+        cell.style.border = '1px dashed black';
     }
 }
 
 export function toggleDotMark(cell) {
-    imageUrl = '../resources/pngimg.com - dot_PNG1.png';
+    imageUrl = '';
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
         cell.style.backgroundImage = `url("${imageUrl}")`;
         cell.style.backgroundSize = 'cover';
         cell.style.backgroundPosition = 'center';
+        cell.style.backgroundColor = 'gray';
     }
 }
 
