@@ -25,7 +25,7 @@
 
 Séance mardi 10.12.24
 Backend
-- On essaie d'interdir les bateaux à se toucher en generant ses placements
+- On essaie d'interdir les bateaux à se toucher en generant ses placements (Angela)
 
 Il nous reste à:
 - Cacher les bateaux du bot pour que l'utilisateur ne peut pas les voir sur l'écran
@@ -34,7 +34,7 @@ Il nous reste à:
 - Créer une fonction qui montre/décide c'est à qui de jouer (c'est peut-être plutôt de front)
     - On ne peut que jouer une fois par tour...
 
-- Créer une fonction qui place les choix du bot (sémi-aléatoirement)
+- Créer une fonction qui place les choix du bot (sémi-aléatoirement) (Andrej)
     - if (x,y) est dans bateaux_player
          mémorise (x,y) et choisis (x+1,y) ou (x-1,y) ou (x, y+1) ou (x, y-1) comme le choix prochain
     - if (x,y) n'est pas dans bateaux_player
