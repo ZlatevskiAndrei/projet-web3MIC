@@ -10,3 +10,4 @@ document.addEventListener("DOMContentLoaded", () => {
     appendBoats(AI_boats, "BotGrid");
     start_game("PlayerGrid", "BotGrid", human_boats, AI_boats);
 });
+    

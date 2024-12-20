@@ -28,6 +28,10 @@ export async function clickGridEvents(gridId) {
         grid.addEventListener("click", function handleClick(event) {
             if (event.target.tagName === 'TD') {
                 const coordinates = extractCoordinates(event.target.id);
+                const allCells = grid.getElementsByTagName('td');
+                for (let cell of allCells) {
+                    cell.style.border = '1px solid rgba(0, 0, 0, 0.2)'; 
+                }
                 resolve({ coordinates, target: event.target });
                 grid.removeEventListener("click", handleClick);
             }
@@ -67,8 +71,10 @@ export function appendBoats(boats, gridId) {
     });
 }
 
-
-
-
-
-
+export function showGrid(gridId) {
+    const grid = document.getElementById(gridId);
+    const allCells = grid.getElementsByTagName('td');
+    for (let cell of allCells) {
+        cell.style.border = '1px solid rgba(0, 0, 0, 1)'; 
+    }
+}

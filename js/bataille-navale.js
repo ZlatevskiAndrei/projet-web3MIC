@@ -1,12 +1,13 @@
 "use strict"
 import { getRandomInt, authorizedDirections, isBoatConflict, isOccupied, isSurrounded, isBoatChosen, botDelay, isBotChosenBoat, getRandomAdjacentCell } from "./util.js";
-import { clickGridEvents, toggleCrossMark, toggleDotMark } from "./dom.js";
+import { showGrid, clickGridEvents, toggleCrossMark, toggleDotMark } from "./dom.js";
 
 export let human_boats = [];
 export let AI_boats = [];
 const chosenCells = new Set();
 const xImg = './resources/iconmonstr-x-mark-thin.png';
 const dotImg = './resources/pngimg.com - dot_PNG1.png';
+
 
 export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu teste sur surrounding, si on ne peux pas mettre une celule, on abandone la création de ce bateau.
     let index = 0;
@@ -37,7 +38,7 @@ export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu 
             }
         }
     }
-}
+} 
 
 export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
     let botChosenCell = {
@@ -56,6 +57,7 @@ export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
         await botDelay();
         let isCorrectChoice = isBotChosenBoat(human_boats, botChosenCell);
         botChosenCell = processBotMove(playerGrid, human_boats, isCorrectChoice, botChosenCell);
+        showGrid("BotGrid");
     }
 }
 
@@ -70,9 +72,7 @@ function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell)
         } while (chosenCells.has(`${newCell.x},${newCell.y}`));
         return newCell;
     }
-    human_boats = human_boats
-        .map(boat => boat.filter(cell => !(cell.x === botChosenCell.x && cell.y === botChosenCell.y)))
-        .filter(boat => boat.length > 0);
+    human_boats = human_boats.map(boat => boat.filter(cell => !(cell.x === botChosenCell.x && cell.y === botChosenCell.y))).filter(boat => boat.length > 0);
     toggleCrossMark(cellDOMInstance, xImg);
     let newAdjacentCell;
     do {
@@ -84,8 +84,8 @@ function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell)
 /*ON LAISSE L'ANCIENNE VERSION DE LA FONCTION boat_placements ICI (pour tester le jeu) POUR LE MOMENT TANT QUE LA NOUVELLE N'EST PAS FINI*/
 ////////////////////////////////////////////////////////////
 
-
-/*export function boat_placements(boats) {
+/*
+export function boat_placements(boats) {
     let index = 0;
     let size_list = [5, 4, 3, 3, 2];
     let size = size_list[index]
@@ -114,5 +114,4 @@ function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell)
             }
         }
     }
-}
-    */
+} */
