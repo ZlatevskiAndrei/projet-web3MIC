@@ -28,7 +28,11 @@ export async function clickGridEvents(gridId) {
         grid.addEventListener("click", function handleClick(event) {
             if (event.target.tagName === 'TD') {
                 const coordinates = extractCoordinates(event.target.id);
-                resolve({coordinates,target : event.target});
+                const allCells = grid.getElementsByTagName('td');
+                for (let cell of allCells) {
+                    cell.style.border = '1px solid rgba(0, 0, 0, 0.2)';
+                }
+                resolve({ coordinates, target: event.target });
                 grid.removeEventListener("click", handleClick);
             }
         });
@@ -36,26 +40,25 @@ export async function clickGridEvents(gridId) {
 }
 
 
-
-export function toggleCrossMark(cell) {
-    imageUrl = '../resources/istockphoto-1276735653-612x612.jpg';
+export function toggleCrossMark(cell, imageUrl) {
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
         cell.style.backgroundImage = `url("${imageUrl}")`;
         cell.style.backgroundSize = 'cover';
         cell.style.backgroundPosition = 'center';
+        cell.style.border = '1px solid red';
     }
 }
 
-export function toggleDotMark(cell) {
-    imageUrl = '../resources/pngimg.com - dot_PNG1.png';
+export function toggleDotMark(cell, imageUrl) {
     if (cell.style.backgroundImage === `url("${imageUrl}")`) {
         cell.style.backgroundImage = '';
     } else {
         cell.style.backgroundImage = `url("${imageUrl}")`;
         cell.style.backgroundSize = 'cover';
         cell.style.backgroundPosition = 'center';
+        cell.style.backgroundColor = 'gray';
     }
 }
 
@@ -68,8 +71,41 @@ export function appendBoats(boats, gridId) {
     });
 }
 
+export function appendBoatsIndicators(gridId) {
+    const sizes = [5, 4, 3, 3, 2];
+    let i = 0;
+    while (i < sizes.length) {
+        for (let j = 1; j <= sizes[i]; j++) {
+            document.getElementById(`${gridId}-${i + 1}${j}`).style.backgroundColor = "red";
+        }
+        i++;
+    }
+}
 
+export function showGrid(gridId) {
+    const grid = document.getElementById(gridId);
+    const allCells = grid.getElementsByTagName('td');
+    for (let cell of allCells) {
+        cell.style.border = '1px solid rgba(0, 0, 0, 1)';
+    }
+}
 
-
-
-
+export function toggleRemoveIndicatorBoat(indicatorGridId, index) {
+    const cellGroups = [
+        [11, 12, 13, 14, 15], 
+        [21, 22, 23, 24],    
+        [31, 32, 33],        
+        [41, 42, 43],         
+        [51, 52]              
+    ];
+    if (index >= 0 && index < cellGroups.length) {
+        let cells = cellGroups[index];
+        for (let i = cells.length - 1; i >= 0; i--) {
+            let tdElement = document.getElementById(`${indicatorGridId}-${cells[i]}`);
+            if (tdElement && tdElement.style.backgroundColor === 'red') {
+                tdElement.style.backgroundColor = 'white';
+                break; 
+            }
+        }
+    }
+}

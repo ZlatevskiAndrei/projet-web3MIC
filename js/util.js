@@ -36,20 +36,39 @@ export function extractCoordinates(cellId) {
     } else throw new Error;
 }
 
-export function isBoatChosen(boat_list, coordinates){
-    for(let boat in boat_list){
-        for(let boat_coordinates in boat){
-            if (boat_coordinates.x === coordinates.x && boat_coordinates.y === coordinates.y) return true;
-        }
-    }
-    return false;
+export function isBoatChosen(boat_list, coordinates) {
+    return isOccupied(boat_list, coordinates.x, coordinates.y)
 }
-export function isOccupied(generatedBoats,x,y){
+export function isOccupied(generatedBoats, x, y) {
     return generatedBoats.some(boat => boat.some(cell => cell.x === x && cell.y === y));
 }
- 
-export function isSurrounded(x, y){
+
+export function isSurrounded(x, y) {
     return isOccupied(x + 1, y) || isOccupied(x, y + 1) || isOccupied(x - 1, y) || isOccupied(x, y - 1)
 }
-    
+
+export async function botDelay(duration = 2000) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, duration);
+    });
+}
+
+export function isBotChosenBoat(boat_list, randomCell) {
+    return isOccupied(boat_list, randomCell.x, randomCell.y);
+}
+
+export function getRandomAdjacentCell(cell) {
+    const { x, y } = cell;
+    const directions = [
+        { x: x - 1, y }, 
+        { x: x + 1, y }, 
+        { x, y: y - 1 }, 
+        { x, y: y + 1 }, 
+    ];
+    const validCells = directions.filter(({ x, y }) => x >= 0 && x <= 9 && y >= 0 && y <= 9);
+    return validCells[getRandomInt(validCells.length)];
+}
+
 
