@@ -21,9 +21,10 @@ body {
     /*interface bouton play */
     background-color: #04AA6D;
     border: none;
+    border-radius: 10px;
     color: white;
     height: 55px;
-    width: 35%;
+    width: 25%;
     font-size: 20px;
     text-align: center;
     display: block;
@@ -63,9 +64,10 @@ body {
     /*Interface des autres boutons*/
     background-color: #da3333;
     border: none;
+    border-radius: 10px;
     color: white;
     height: 45px;
-    width: 35%;
+    width: 25%;
     font-size: 16px;
     text-align: center;
     display: block;
