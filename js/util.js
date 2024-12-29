@@ -4,7 +4,7 @@ export function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-export function isBoatConflict(generatedBoats, startingCell, direction, size) { //suppression de cette fonction, garder que isSurrounded et isOccupied.
+/*export function isBoatConflict(generatedBoats, startingCell, direction, size) { //suppression de cette fonction, garder que isSurrounded et isOccupied.
     if (!generatedBoats.length) return false;
     const isOccupied = (x, y) => generatedBoats.some(boat => boat.some(cell => cell.x === x && cell.y === y));
     const isSurrounded = (x, y) => isOccupied(x + 1, y) || isOccupied(x, y + 1) || isOccupied(x - 1, y) || isOccupied(x, y - 1)
@@ -16,7 +16,7 @@ export function isBoatConflict(generatedBoats, startingCell, direction, size) { 
         y += direction.y;
     }
     return false;
-}
+}*/
 
 export function authorizedDirections(startingCell, size) {
     let directions = [];
@@ -43,8 +43,8 @@ export function isOccupied(generatedBoats, x, y) {
     return generatedBoats.some(boat => boat.some(cell => cell.x === x && cell.y === y));
 }
 
-export function isSurrounded(x, y) {
-    return isOccupied(x + 1, y) || isOccupied(x, y + 1) || isOccupied(x - 1, y) || isOccupied(x, y - 1)
+export function isSurrounded(generatedBoats,x, y) {
+    return isOccupied(generatedBoats,x + 1, y) || isOccupied(generatedBoats,x, y + 1) || isOccupied(generatedBoats,x - 1, y) || isOccupied(generatedBoats,x, y - 1)
 }
 
 export async function botDelay(duration = 2000) {
