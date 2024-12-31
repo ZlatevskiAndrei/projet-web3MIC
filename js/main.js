@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     boat_placements(AI_boats);
     initGrids();
     appendBoats(human_boats, "PlayerGrid");
-    appendBoats(AI_boats, "BotGrid");
+    //appendBoats(AI_boats, "BotGrid"); // On cache les bateux de notre adversaire :)
     appendBoatsIndicators("indicatorAI");
     appendBoatsIndicators("indicatorPlayer");
     start_game("PlayerGrid", "BotGrid", human_boats, AI_boats);

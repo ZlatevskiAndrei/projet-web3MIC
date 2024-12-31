@@ -12,86 +12,15 @@ const chosenCells = new Set();
 const xImg = './resources/iconmonstr-x-mark-thin.png';
 const dotImg = './resources/pngimg.com - dot_PNG1.png';
 
-//LA FONCTION D'ANGELA
-export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu teste sur surrounding, si on ne peux pas mettre une celule, on abandone la création de ce bateau.
+export function boat_placements(boats) {
     let index = 0;
-    let size_list = [5, 4, 3, 3, 2]; // NE CHANGEZ PAS L'ORDRE svp ! 
-    let size = size_list[index]
-    for (let i = 0; i < 5; i++) {
-        let boat = [];
-        generation:
-        while (true) {
-            let randomCell = { //le bot choisit une case dans la grille
-                x: getRandomInt(10),
-                y: getRandomInt(10)
-            };
-            let directions = authorizedDirections(randomCell, size);
-            if (directions.length === 0) continue; // on refait le boucle = choisit une autre case de départ pour avoir des authorizedD
-            let oneDirection = getRandomInt(directions.length)
-            let randomDirection = directions[oneDirection];
-            for (let j = 0; j < size;) { //ici pour chaque addition d'un cellule, on teste avec surrounding et si on ne peux pas on met un break immediatement
-                if (isOccupied(boats,x,y) || isSurrounded(boats,x,y)){
-                    if (directions.length === 1){
-                        continue generation;
-                    }
-                    if (oneDirection < directions.length-1){
-                            oneDirection++;
-                        } else {
-                            oneDirection--; 
-                        }
-                    if (oneDirection < 0 || oneDirection >= directions.length){
-                        continue generation;
-                    }
-                    randomDirection = directions[oneDirection];
-                    x = randomCell.x;
-                    y = randomCell.y;
-                    j = 0;
-                    boat = [];
-                } else {
-                    boat.push({x,y});
-                    x += randomDirection.x;
-                    y += randomDirection.y;
-                    j++;
-                } 
-            } boats.push(boat);
-              break; 
-        }
-    }
-}
-/*if (!(isOccupied(boats,randomCell.x,randomCell.y) || isSurrounded(boats,randomCell.x,randomCell.y))) { //si condition pas satisfait, on genere une nouvelle startingcell car while tjrs true puisque break se trouve dans le if
-    let x = randomCell.x;
-    let y = randomCell.y;
-    for (let j = 0; j < size; j++) { //ici pour chaque addition d'un cellule, on teste avec surrounding et si on ne peux pas on met un break immediatement
-        boat.push({x,y});
-        x += randomDirection.x;
-        y += randomDirection.y;
-        if (isOccupied(boats,x,y) || isSurrounded(boats,x,y)){
-            if (oneDirection !== directions.length-1){
-                randomDirection = directions[oneDirection+1];
-            } else {
-                randomDirection = directions[oneDirection-1];
-            }
-            x = randomDirection.x;
-            y = randomDirection.y;
-            j=-1;
-        } continue;
-    }
-    boats.push(boat);
-    index++;
-    size = size_list[index];
-    break; //sort du loop while*/
-////////////////////////////////////////////////////////////
-/*ON LAISSE L'ANCIENNE VERSION DE LA FONCTION boat_placements ICI (pour tester le jeu) POUR LE MOMENT TANT QUE LA NOUVELLE N'EST PAS FINI*/
-////////////////////////////////////////////////////////////
-
-//LA FONCTION D'ANDREJ INITIALLEMENT
-/*export function boat_placements(boats) {
-    let index = 0;
-    let size_list = [5, 4, 3, 3, 2];
-    let size = size_list[index]
-    for (let i = 0; i < 5; i++) {
-        let boat = [];
-        while (true) {
+    const size_list = [5, 4, 3, 3, 2];
+    const maxAttempts = 10000;
+    while (index < size_list.length) {
+        let size = size_list[index];
+        let attempt = 0;
+        while (attempt < maxAttempts) {
+            attempt++;
             let randomCell = {
                 x: getRandomInt(10),
                 y: getRandomInt(10)
@@ -99,25 +28,30 @@ export function boat_placements(boats) { //pour chaque cellule qu'on ajoute, tu 
             let directions = authorizedDirections(randomCell, size);
             if (directions.length === 0) continue;
             let randomDirection = directions[getRandomInt(directions.length)];
-            if (!isBoatConflict(boats, randomCell, randomDirection, size)) {
-                let x = randomCell.x;
-                let y = randomCell.y;
-                for (let j = 0; j < size; j++) {
-                    boat.push({ x, y });
-                    x += randomDirection.x;
-                    y += randomDirection.y;
+            let boat = [];
+            let x = randomCell.x;
+            let y = randomCell.y;
+            let validPlacement = true;
+            for (let j = 0; j < size; j++) {
+                if (isOccupied(boats, x, y) || isSurrounded(boats, x, y)) {
+                    validPlacement = false;
+                    break;
                 }
+                boat.push({ x, y });
+                x += randomDirection.x;
+                y += randomDirection.y;
+            }
+            if (validPlacement) {
                 boats.push(boat);
                 index++;
-                size = size_list[index];
                 break;
             }
         }
+        if (attempt >= maxAttempts) {
+            throw new Error(`Failed to place boat of size ${size} after ${maxAttempts} attempts.`);
+        }
     }
-}*/
-
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
+}
 
 export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
     let botChosenCell = {
@@ -125,7 +59,7 @@ export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
         y: getRandomInt(10)
     };
     while (true) {
-        if (human_boats_counter === 0 || AI_boats_counter === 0) break; //ON DETERMINE ICI QUI GAGNE, A COMPLETER
+        if (human_boats_counter === 0 || AI_boats_counter === 0) break; 
         let { coordinates: playerClickCoordinates, target: elementClicked } = await clickGridEvents(botGrid);
         processPlayerMove(playerClickCoordinates, elementClicked, AI_boats);
         await botDelay();
@@ -169,4 +103,3 @@ function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell)
     } while (chosenCells.has(`${newAdjacentCell.x},${newAdjacentCell.y}`));
     return newAdjacentCell;
 }
-
