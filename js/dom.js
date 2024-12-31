@@ -66,7 +66,7 @@ export function toggleDotMark(cell, imageUrl) {
 export function appendBoats(boats, gridId) {
     boats.forEach(boat => {
         boat.forEach(boatCell => {
-            document.getElementById(`${gridId}-${boatCell.x}${boatCell.y}`).style.backgroundColor = "lightblue";
+            document.getElementById(`${gridId}-${boatCell.x}${boatCell.y}`).style.backgroundColor = "lightblue"; // a modifier
         });
     });
 }
@@ -76,7 +76,7 @@ export function appendBoatsIndicators(gridId) {
     let i = 0;
     while (i < sizes.length) {
         for (let j = 1; j <= sizes[i]; j++) {
-            document.getElementById(`${gridId}-${i + 1}${j}`).style.backgroundColor = "red";
+            document.getElementById(`${gridId}-${i + 1}${j}`).style.backgroundColor = "red"; // a modifier si vous voulez
         }
         i++;
     }
