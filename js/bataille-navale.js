@@ -59,7 +59,7 @@ export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
         y: getRandomInt(10)
     };
     while (true) {
-        if (human_boats_counter === 0 || AI_boats_counter === 0) break; 
+        if (human_boats_counter === 0 || AI_boats_counter === 0) break; // A completer
         let { coordinates: playerClickCoordinates, target: elementClicked } = await clickGridEvents(botGrid);
         processPlayerMove(playerClickCoordinates, elementClicked, AI_boats);
         await botDelay();
