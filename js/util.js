@@ -4,20 +4,6 @@ export function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-/*export function isBoatConflict(generatedBoats, startingCell, direction, size) { //suppression de cette fonction, garder que isSurrounded et isOccupied.
-    if (!generatedBoats.length) return false;
-    const isOccupied = (x, y) => generatedBoats.some(boat => boat.some(cell => cell.x === x && cell.y === y));
-    const isSurrounded = (x, y) => isOccupied(x + 1, y) || isOccupied(x, y + 1) || isOccupied(x - 1, y) || isOccupied(x, y - 1)
-    let x = startingCell.x;
-    let y = startingCell.y;
-    for (let i = 0; i < size; i++) {
-        if (isOccupied(x, y) && isSurrounded(x, y)) return true;
-        x += direction.x;
-        y += direction.y;
-    }
-    return false;
-}*/
-
 export function authorizedDirections(startingCell, size) {
     let directions = [];
     if (startingCell.x + size - 1 <= 9) directions.push({ x: 1, y: 0 })
