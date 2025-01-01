@@ -9,7 +9,7 @@ let AI_boats_counter = 17;
 const playerIndicatorGridId = "indicatorPlayer";
 const AI_indicatorGridId = "indicatorAI"
 const chosenCells = new Set();
-const xImg = './resources/iconmonstr-x-mark-thin.png';
+const giftImg = './resources/gift.jpg';
 const dotImg = './resources/pngimg.com - dot_PNG1.png';
 
 export function boat_placements(boats) {
@@ -82,7 +82,7 @@ function processPlayerMove(playerClickCoordinates, elementClicked, AI_boats) {
     if (isBoatChosen(AI_boats, formattedCoordinates)) {
         let touchedBoatIndex = AI_boats.findIndex(boat => boat.some(cell => cell.x === formattedCoordinates.x && cell.y === formattedCoordinates.y));
         AI_boats = AI_boats.map(boat => boat.filter(cell => !(cell.x === formattedCoordinates.x && cell.y === formattedCoordinates.y)));
-        toggleCrossMark(elementClicked, xImg);
+        toggleCrossMark(elementClicked, giftImgImg);
         toggleRemoveIndicatorBoat(AI_indicatorGridId, touchedBoatIndex);
         AI_boats_counter--;
     }
@@ -102,7 +102,7 @@ function processBotMove(playerGrid, human_boats, isBotChosenBoat, botChosenCell)
     }
     let touchedBoatIndex = human_boats.findIndex(boat => boat.some(cell => cell.x === botChosenCell.x && cell.y === botChosenCell.y));
     human_boats = human_boats.map(boat => boat.filter(cell => !(cell.x === botChosenCell.x && cell.y === botChosenCell.y)));
-    toggleCrossMark(cellDOMInstance, xImg);
+    toggleCrossMark(cellDOMInstance, giftImgImg);
     toggleRemoveIndicatorBoat(playerIndicatorGridId, touchedBoatIndex);
     human_boats_counter--;
     let newAdjacentCell;

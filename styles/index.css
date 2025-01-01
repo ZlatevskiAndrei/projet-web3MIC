@@ -14,15 +14,18 @@ td {
 
 #playerGridPlacement {
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 10% 90%;
     margin-top: 20vh;
     margin-bottom: 20vh;
 }
 
+.text{
+    font-family: Lucida Calligraphy,cursive;
+}
 
 #botGridPlacement {
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 10% 90%;
     margin-top: 20vh;
     margin-bottom: 20vh;
 }
@@ -49,7 +52,7 @@ td {
     margin: 10vh;
 }   
 
-/*#botGridPlacement :hover {
-    cursor : url('../resources/cursor.png'), auto;
-}*/
+#botGridPlacement :hover {
+    cursor : url('../resources/shovel.png'), auto;
+}
 
