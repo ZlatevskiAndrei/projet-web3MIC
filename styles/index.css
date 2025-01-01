@@ -13,16 +13,20 @@ td {
 }
 
 #playerGridPlacement {
-    display: flex;
+    display: grid;
+    grid-template-rows: 90% 10%;
     margin-top: 20vh;
     margin-bottom: 20vh;
 }
 
+
 #botGridPlacement {
-    display: flex;
+    display: grid;
+    grid-template-rows: 90% 10%;
     margin-top: 20vh;
     margin-bottom: 20vh;
 }
+
 
 .container {
     display: flex;
@@ -44,3 +48,7 @@ td {
     border-spacing: 0 3px;
     margin: 10vh;
 }   
+
+#botGridPlacement :hover {
+    cursor : url('../resources/cursor.png'), auto;
+}
