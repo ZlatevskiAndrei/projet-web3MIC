@@ -2,6 +2,8 @@
 
 import { extractCoordinates } from "./util.js";
 
+const playerBoatImg="./resources/burried_gift.jpg"
+
 export function initGrids() {
     createGrid("PlayerGrid");
     createGrid("BotGrid");
@@ -66,7 +68,7 @@ export function toggleDotMark(cell, imageUrl) {
 export function appendBoats(boats, gridId) {
     boats.forEach(boat => {
         boat.forEach(boatCell => {
-            document.getElementById(`${gridId}-${boatCell.x}${boatCell.y}`).style.backgroundColor = "lightblue"; // a modifier
+            document.getElementById(`${gridId}-${boatCell.x}${boatCell.y}`).style.backgroundImage = playerBoatImg; // a modifier
         });
     });
 }
