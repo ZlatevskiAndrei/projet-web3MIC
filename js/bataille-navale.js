@@ -66,12 +66,12 @@ export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
         botChosenCell = processBotMove(playerGrid, human_boats, isCorrectChoice, botChosenCell);
         showGrid("BotGrid");
         if (human_boats_counter === 0) {
-            alert("The impostor got away with all the presents, try again and catch him this time !");
+            alert("😢The impostor got away with all the presents, try again and catch him this time !😢");
             break; // A completer
         }
 
         if (AI_boats_counter === 0) {
-            alert("You win ! Thank you for saving Christmas !");
+            alert("☃️🎅🏻You win ! Thank you for saving Christmas !🎅🏻☃️");
             break ;
         }
     }
