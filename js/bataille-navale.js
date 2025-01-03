@@ -59,21 +59,21 @@ export async function start_game(playerGrid, botGrid, human_boats, AI_boats) {
         y: getRandomInt(10)
     };
     while (true) {
-        let { coordinates: playerClickCoordinates, target: elementClicked } = await clickGridEvents(botGrid);
-        processPlayerMove(playerClickCoordinates, elementClicked, AI_boats);
-        await botDelay();
-        let isCorrectChoice = isBotChosenBoat(human_boats, botChosenCell);
-        botChosenCell = processBotMove(playerGrid, human_boats, isCorrectChoice, botChosenCell);
-        showGrid("BotGrid");
         if (human_boats_counter === 0) {
             alert("😢The impostor got away with all the presents, try again and catch him this time !😢");
-            break; // A completer
+            break; 
         }
 
         if (AI_boats_counter === 0) {
             alert("☃️🎅🏻You win ! Thank you for saving Christmas !🎅🏻☃️");
             break ;
         }
+        let { coordinates: playerClickCoordinates, target: elementClicked } = await clickGridEvents(botGrid);
+        processPlayerMove(playerClickCoordinates, elementClicked, AI_boats);
+        await botDelay();
+        let isCorrectChoice = isBotChosenBoat(human_boats, botChosenCell);
+        botChosenCell = processBotMove(playerGrid, human_boats, isCorrectChoice, botChosenCell);
+        showGrid("BotGrid");
     }
 }
 
