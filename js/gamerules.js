@@ -8,7 +8,7 @@ function nameComparison() {
         alert("Well played ! ")
     }
     else {
-        alert(userName+", you didn't pay enough attention to the story, you are Santa Claus ! How did you forget that ?")
+        alert(userName.value+", you didn't pay enough attention to the story, you are Santa Claus ! How did you forget that ?")
     }
     userName.value=""
 }
