@@ -1,100 +1,87 @@
-body {
-    background-image: url("../resources/snow.jpg");
-}
-
-table {
-    width: 400px;
-    height: 400px;
-    border-collapse: separate;
-}
-
-td {
-    border: 1px solid black;
-}
-
-#playerGridPlacement {
-    display: grid;
-    grid-template-rows: 10% 90%;
-    margin-top: 20vh;
-    margin-bottom: 20vh;
-}
-
-.text{
-    font-family: Lucida Calligraphy,cursive;
-}
-
-#botGridPlacement {
-    display: grid;
-    grid-template-rows: 10% 90%;
-    margin-top: 20vh;
-    margin-bottom: 20vh;
-}
-
-
-.container {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    margin: 0 10vh; 
-}
-
-#indicatorTables {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#indicatorTables table {
-    width: 50px;
-    height: 50px;
-    border-collapse: separate;
-    border-spacing: 0 3px;
-    margin: 10vh;
-}   
-
-#botGridPlacement :hover {
-    cursor : url('../resources/shovel.png'), auto;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-  
-a {
-    display: block;
-    padding: 8px;
-    background-color: rgb(105, 117, 176);
-}
-
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(105, 117, 176);
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-  
-li {
-    float: left;
-    display: inline;
-}
-  
-li a {
-    display: block;
-    color: rgb(255, 255, 255);
+.title {
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    font-size: 40px;
 }
-  
-li a:hover {
-    background-color: rgba(255, 255, 255, 0.967);
-    color: rgb(105, 117, 176);
+.title{
+    font-family:Lucida Calligraphy,cursive;
 }
 
+.edition {
+    text-align: center;
+    font-size: 25px;
+    color: #d70a0a;
+    font-family: Harrington,fantasy;
+}
+
+body {
+    background-image: url("../resources/winter_landscape.png");
+}
+
+.play {
+    /*interface bouton play */
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    height: 55px;
+    width: 25%;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    transition: all 0.5s;
+    cursor: pointer;
+    font-family:Lucida Calligraphy,cursive;
+}
+
+.play span {
+    /*les fonctions suivantes servent à afficher la petite flèche quand on passe la souris sur play */
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.play span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.play:hover span {
+    padding-right: 25px;
+}
+
+.play:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.menuButton {
+    /*Interface des autres boutons*/
+    background-color: #da3333;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    height: 45px;
+    width: 25%;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    font-family:Lucida Calligraphy,cursive;
+}
+
+.menuButton:hover {
+    background-color: #ca1717
+}
+
+button a {
+    /*gère les liens*/
+    display: block;
+    text-decoration: none;
+    color: white;
+}
