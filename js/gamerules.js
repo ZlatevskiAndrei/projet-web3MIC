@@ -5,7 +5,7 @@ enterButton.addEventListener("click",nameComparison)
 
 function nameComparison() {
     if(userName.value==="Santa Claus" || userName.value==="santa claus" || userName.value==="Santa claus"|| userName.value==="santa Claus"||userName.value==="Santa Claus " || userName.value==="santa claus " || userName.value==="Santa claus "|| userName.value==="santa Claus " ){
-        alert("Well played ! ")
+        alert("Well played Santa ! You can now enter the game ")
     }
     else {
         alert(userName.value+", you didn't pay enough attention to the story, you are Santa Claus ! How did you forget that ?")
