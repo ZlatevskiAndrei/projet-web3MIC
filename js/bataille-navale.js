@@ -16,8 +16,7 @@ export function boat_placements(boats) {
     let index = 0;
     const size_list = [5, 4, 3, 3, 2];
     const maxAttempts = 10000;
-    while (index < size_list.length) {
-        let size = size_list[index];
+    for (const size of size_list) {
         let attempt = 0;
         while (attempt < maxAttempts) {
             attempt++;
@@ -43,7 +42,6 @@ export function boat_placements(boats) {
             }
             if (validPlacement) {
                 boats.push(boat);
-                index++;
                 break;
             }
         }
